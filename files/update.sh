@@ -1,29 +1,34 @@
 #!/bin/bash
 
-echo "Do you want to install wget and unzip?"
-echo "1 = Yes"
-echo "2 = No"
+echo "1 = Install wget and unzip"
+echo "2 = Skip"
 read -p "Your choice: " INSTALL_CHOICE
 
 if [ "$INSTALL_CHOICE" -eq 1 ]; then
-    echo "Installing wget and unzip..."
     sudo apt update
     sudo apt install -y wget unzip
 fi
 
-read -p "Paste the full path to your Minecraft mods folder: " MOD_FOLDER
+read -p "Minecraft mods folder path: " MOD_FOLDER
 
-ZIP_URL="https://supergamer45550.github.io/GAM-modpack-2-website/files/new_mods.zip"
+echo "Choose version:"
+echo "1 = 1.3.2"
+echo "2 = 1.3.1"
+echo "3 = 1.3.0"
+echo "4 = 1.2.0"
+read -p "Your choice: " VERSION_CHOICE
 
+case "$VERSION_CHOICE" in
+	1) VERSION="1.3.2" ;;
+    2) VERSION="1.3.1" ;;
+    3) VERSION="1.3.0" ;;
+    4) VERSION="1.2.0" ;;
+    *) exit 1 ;;
+esac
+
+ZIP_URL="https://supergamer45550.github.io/GAM-modpack-2-website/files/$VERSION/new_mods.zip"
 TEMP_ZIP="/tmp/minecraft_mods.zip"
 
-echo "Downloading mods..."
 wget -O "$TEMP_ZIP" "$ZIP_URL"
-
-echo "Extracting mods into $MOD_FOLDER..."
 unzip -o "$TEMP_ZIP" -d "$MOD_FOLDER"
-
-echo "Cleaning up..."
 rm "$TEMP_ZIP"
-
-echo "✅ Mods installed successfully!"
