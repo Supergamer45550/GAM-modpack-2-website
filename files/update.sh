@@ -15,19 +15,21 @@ read -p "Minecraft mods folder path: " MOD_FOLDER
 
 # Version selection
 echo "Choose version:"
-echo "1 = 1.3.2"
-echo "2 = 1.3.1"
-echo "3 = 1.3.0"
-echo "4 = 1.2.0"
-echo "5 = Enter custom version"
+echo "1 = 1.4.0"
+echo "2 = 1.3.2"
+echo "3 = 1.3.1"
+echo "4 = 1.3.0"
+echo "5 = 1.2.0"
+echo "6 = Enter custom version"
 read -p "Your choice: " VERSION_CHOICE
 
 case "$VERSION_CHOICE" in
-    1) VERSION="1.3.2" ;;
-    2) VERSION="1.3.1" ;;
-    3) VERSION="1.3.0" ;;
-    4) VERSION="1.2.0" ;;
-    5) read -p "Enter version manually (e.g., 1.4.0): " VERSION ;;
+	1) Version="1.4.0" ;;
+    2) VERSION="1.3.2" ;;
+    3) VERSION="1.3.1" ;;
+    4) VERSION="1.3.0" ;;
+    5) VERSION="1.2.0" ;;
+    6) read -p "Enter version manually (e.g., 1.4.0): " VERSION ;;
     *) echo "Invalid choice. Exiting." && exit 1 ;;
 esac
 
